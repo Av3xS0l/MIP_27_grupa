@@ -1,9 +1,13 @@
 import tkinter as tk
-
+from klases import Node
+from klases import Minimax
 
 root = tk.Tk()
 root.title("Spēlīte")
 root.geometry("350x250")
+
+
+MAX_SKAITLIS = 10000
 
 
 def start_scene():
@@ -19,8 +23,10 @@ def start_scene():
         error_label.config(text="Kļūda: Skaitlim jābūt starp 20 un 30")
         return
     choice_scene.pack_forget()
-    algo = choice_algorithm.get()
-    print("Izvēlētais algoritms: "+algo)
+    rez = Minimax(Node(int(number_choice.get()), 0, 0, True))
+    print(rez)
+    # algo = choice_algorithm.get()
+    # print("Izvēlētais algoritms: "+algo)
     game_scene.pack()
     
     
@@ -28,8 +34,16 @@ def start_scene():
     #pnts_label.config(text="Kopējie punkti: " + str(pnts))
     #bank_pnts.config(text="Banka: " + str(bank))
 
-def btn_click():
-    print("Poga nospiesta")
+def reiz3_komanda():
+    print(3)
+
+def reiz4_komanda():
+    print(4)
+
+def reiz5_komanda():
+    print(5)
+
+
 
 def end_game():
     print("Nospiesta poga beigt spēli")
@@ -47,7 +61,7 @@ choice_label.pack(pady=10)
 
 choice_algorithm = tk.StringVar(value="none")
 
-
+choice_algorithm.set('minimax')
 algo1 = tk.Radiobutton(choice_scene, text="Minimax", variable=choice_algorithm, value="minimax")
 algo1.pack()
 
@@ -78,11 +92,11 @@ num_label.pack(pady=5)
 #pogas
 btn_frame = tk.Frame(game_scene)
 btn_frame.pack(pady=10)
-button1 = tk.Button(btn_frame, text="Reiz 3", width=10, fg="white", bg="black", command=btn_click)
+button1 = tk.Button(btn_frame, text="Reiz 3", width=10, fg="white", bg="black", command=reiz3_komanda)
 button1.grid(column=0, row=1, padx=5)
-button2 = tk.Button(btn_frame, text="Reiz 4", width=10, fg="white", bg="black", command=btn_click)
+button2 = tk.Button(btn_frame, text="Reiz 4", width=10, fg="white", bg="black", command=reiz4_komanda)
 button2.grid(column=1, row=1, padx=5) 
-button3 = tk.Button(btn_frame, text="Reiz 5", width=10, fg="white", bg="black", command=btn_click)
+button3 = tk.Button(btn_frame, text="Reiz 5", width=10, fg="white", bg="black", command=reiz5_komanda)
 button3.grid(column=2, row=1, padx=5)
 button4 = tk.Button(btn_frame, text="Atkārtot spēli", width = 10, bg="black", fg="red", command=end_game)
 button4.grid(column=1, row=2, pady=10)
