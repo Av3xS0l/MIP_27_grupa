@@ -16,11 +16,13 @@ def _minimax(sakums: Node, dzilums):
     else:
         sakums.heur = min(sakums.next).heur
 
+
 def Minimax(sakums: Node):
     MAX_DZILUMS = 3
     _minimax(sakums, 0)
     next_node = sakums
     cels = []
+
     for i in range(MAX_DZILUMS):
         for n in next_node.next:
             if n.heur == next_node.heur:

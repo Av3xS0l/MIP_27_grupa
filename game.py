@@ -9,8 +9,10 @@ root.geometry("350x250")
 
 MAX_SKAITLIS = 10000
 
+COMP_STATE = Node(0, 0, 0, True)
 
 def start_scene():
+    global COMP_STATE
     error_label.config(text="")
     try:
         number = int(number_choice.get())
@@ -23,7 +25,8 @@ def start_scene():
         error_label.config(text="Kļūda: Skaitlim jābūt starp 20 un 30")
         return
     choice_scene.pack_forget()
-    rez = Minimax(Node(int(number_choice.get()), 0, 0, True))
+    COMP_STATE.number = number
+    rez = Minimax(COMP_STATE)
     print(rez)
     # algo = choice_algorithm.get()
     # print("Izvēlētais algoritms: "+algo)
@@ -33,15 +36,32 @@ def start_scene():
     #num_label.config(text="Skaitlis: " + str(current_num))
     #pnts_label.config(text="Kopējie punkti: " + str(pnts))
     #bank_pnts.config(text="Banka: " + str(bank))
+def calculate_new_state(reiz):
+    COMP_STATE.number = COMP_STATE.number*reiz
+    COMP_STATE.score  = COMP_STATE.score + COMP_STATE.new_punkti(COMP_STATE.number*reiz)
+    COMP_STATE.bank = COMP_STATE.bank + COMP_STATE.new_banka(COMP_STATE.number*reiz)
 
 def reiz3_komanda():
-    print(3)
+    calculate_new_state(3)
+    cels = Minimax(COMP_STATE)
+    print(cels)
+    # TODO update labels
+    # TODO make the path choice
+
 
 def reiz4_komanda():
-    print(4)
+    calculate_new_state(4)
+    cels = Minimax(COMP_STATE)
+    print(cels)
+    # TODO update labels
+    # TODO make the path choice
 
 def reiz5_komanda():
-    print(5)
+    calculate_new_state(5)
+    cels = Minimax(COMP_STATE)
+    print(cels)
+    # TODO update labels
+    # TODO make the path choice
 
 
 
