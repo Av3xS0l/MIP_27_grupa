@@ -1,13 +1,12 @@
 import tkinter as tk
 from klases import Node
-from klases import Minimax, AlfaBeta
-
+from klases import Minimax, AlfaBeta, Veiktspeja
 root = tk.Tk()
 root.title("Spēlīte")
 root.geometry("350x250")
 
 
-MAX_SKAITLIS = 10000
+MAX_SKAITLIS = 3000
 
 COMP_STATE = Node(0, 0, 0, True)
 
