@@ -12,7 +12,7 @@ def _minimax(sakums: Node, dzilums, rez: Veiktspeja):
     for i in range(3, 6):
         sakums.next.append(Node(sakums.number*i, sakums.score + sakums.new_punkti(sakums.number*i),sakums.bank + sakums.new_banka(sakums.number*i), not sakums.max))
         rez.generets += 1
-        _minimax(sakums.next[-1], dzilums+1)
+        _minimax(sakums.next[-1], dzilums+1, rez)
     
     if sakums.max:
         sakums.heur = max(sakums.next).heur

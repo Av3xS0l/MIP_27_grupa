@@ -1,6 +1,8 @@
 import tkinter as tk
 from klases import Node
 from klases import Minimax, AlfaBeta, Veiktspeja
+
+
 root = tk.Tk()
 root.title("Spēlīte")
 root.geometry("350x250")
@@ -9,9 +11,12 @@ root.geometry("350x250")
 MAX_SKAITLIS = 3000
 
 COMP_STATE = Node(0, 0, 0, True)
-
+VEIKTS = None
+ALGO = None
+ 
 def start_scene():
-    global COMP_STATE
+    global COMP_STATE, VEIKTS, ALGO
+    
     error_label.config(text="")
     try:
         number = int(number_choice.get())
@@ -23,9 +28,21 @@ def start_scene():
     if number < 20 or number > 30:
         error_label.config(text="Kļūda: Skaitlim jābūt starp 20 un 30")
         return
+    
+
     choice_scene.pack_forget()
     COMP_STATE.number = number
-    # algo = choice_algorithm.get()
+    izvele_dat_spel = choice_speletajs_izvele.get()
+    VEIKTS = Veiktspeja()
+    if izvele_dat_spel == "dators":
+        COMP_STATE = Node(0, 0, 0, True)
+        print(COMP_STATE.max)
+    else:
+        COMP_STATE = Node(0, 0, 0, False)
+        print(COMP_STATE.max)
+    rez = Minimax(COMP_STATE, VEIKTS)
+    print(rez)
+    ALGO = choice_algorithm.get()
     # print("Izvēlētais algoritms: "+algo)
     game_scene.pack()
     
@@ -40,23 +57,44 @@ def calculate_new_state(reiz):
 
 def reiz3_komanda():
     calculate_new_state(3)
-    cels = Minimax(COMP_STATE)
+    if ALGO == "minimax":
+        cels = Minimax(COMP_STATE, VEIKTS)
+    else:
+        cels = AlfaBeta(COMP_STATE, VEIKTS)
     print(cels)
+    current_num= COMP_STATE.number*3
+    num_label.config(text="Skaitlis: " + str(current_num))
+    pnts_label.config(text="Kopējie punkti: " + str(COMP_STATE.score))
+    bank_pnts.config(text="Banka: " + str(COMP_STATE.bank))
     # TODO update labels
     # TODO make the path choice
 
 
 def reiz4_komanda():
     calculate_new_state(4)
-    cels = Minimax(COMP_STATE)
+    if ALGO == "minimax":
+        cels = Minimax(COMP_STATE, VEIKTS)
+    else:
+        cels = AlfaBeta(COMP_STATE, VEIKTS)
     print(cels)
+    current_num = COMP_STATE.number*4
+    num_label.config(text="Skaitlis: " + str(current_num))
+    pnts_label.config(text="Kopējie punkti: " + str(COMP_STATE.score))
+    bank_pnts.config(text="Banka: " + str(COMP_STATE.bank))
     # TODO update labels
     # TODO make the path choice
 
 def reiz5_komanda():
     calculate_new_state(5)
-    cels = Minimax(COMP_STATE)
+    if ALGO == "minimax":
+        cels = Minimax(COMP_STATE, VEIKTS)
+    else:
+        cels = AlfaBeta(COMP_STATE, VEIKTS)
     print(cels)
+    current_num= COMP_STATE.number*5
+    num_label.config(text="Skaitlis: " + str(current_num))
+    pnts_label.config(text="Kopējie punkti: " + str(COMP_STATE.score))
+    bank_pnts.config(text="Banka: " + str(COMP_STATE.bank))
     # TODO update labels
     # TODO make the path choice
 
@@ -66,6 +104,12 @@ def end_game():
     print("Nospiesta poga beigt spēli")
     game_scene.pack_forget()
     choice_scene.pack()
+    COMP_STATE.score = 0
+    COMP_STATE.bank = 0
+    COMP_STATE.number = 0
+    num_label.config(text="Skaitlis: " + str(COMP_STATE.number))
+    pnts_label.config(text="Kopējie punkti: " + str(COMP_STATE.score))
+    bank_pnts.config(text="Banka: " + str(COMP_STATE.bank))
 #izvēles scenes (pirmais)
 
 choice_scene = tk.Frame(root)
@@ -84,6 +128,15 @@ algo1.pack()
 
 algo1 = tk.Radiobutton(choice_scene, text="Alpha-Beta", variable=choice_algorithm, value="alphabeta")
 algo1.pack()
+
+choice_speletajs_izvele = tk.StringVar(value="none")
+
+choice_speletajs_izvele.set('speletajs')
+dators_speletajs = tk.Radiobutton(choice_scene, text="Dators", variable=choice_speletajs_izvele, value="dators")
+dators_speletajs.pack()
+
+dators_speletajs = tk.Radiobutton(choice_scene, text="Speletajs", variable=choice_speletajs_izvele, value="speletajs")
+dators_speletajs.pack()
 
 number_choice = tk.Spinbox(choice_scene, from_=20, to=30)
 number_choice.pack(pady=10)

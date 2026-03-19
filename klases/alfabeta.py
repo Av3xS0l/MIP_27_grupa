@@ -12,7 +12,7 @@ def _alfabeta(sakums: Node, ieprieks: Node | None, dzilums, rez: Veiktspeja):
     for i in range(3, 6):
         sakums.next.append(Node(sakums.number*i, sakums.score + sakums.new_punkti(sakums.number*i),sakums.bank + sakums.new_banka(sakums.number*i), not sakums.max))
         rez.generets += 1
-        _alfabeta(sakums.next[-1], sakums, dzilums+1)
+        _alfabeta(sakums.next[-1], sakums, dzilums+1, rez)
 
         if sakums.max:
             if sakums.next[-1].heur > sakums.ab:
