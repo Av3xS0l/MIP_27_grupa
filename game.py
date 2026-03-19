@@ -26,8 +26,6 @@ def start_scene():
         return
     choice_scene.pack_forget()
     COMP_STATE.number = number
-    rez = AlfaBeta(COMP_STATE)
-    print(rez)
     # algo = choice_algorithm.get()
     # print("Izvēlētais algoritms: "+algo)
     game_scene.pack()
