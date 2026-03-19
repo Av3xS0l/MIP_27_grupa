@@ -35,10 +35,10 @@ def start_scene():
     izvele_dat_spel = choice_speletajs_izvele.get()
     VEIKTS = Veiktspeja()
     if izvele_dat_spel == "dators":
-        COMP_STATE = Node(0, 0, 0, True)
+        COMP_STATE = Node(number, 0, 0, True)
         print(COMP_STATE.max)
     else:
-        COMP_STATE = Node(0, 0, 0, False)
+        COMP_STATE = Node(number, 0, 0, False)
         print(COMP_STATE.max)
     rez = Minimax(COMP_STATE, VEIKTS)
     print(rez)
