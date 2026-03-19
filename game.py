@@ -38,8 +38,8 @@ def start_scene():
     #bank_pnts.config(text="Banka: " + str(bank))
 def calculate_new_state(reiz):
     COMP_STATE.number = COMP_STATE.number*reiz
-    COMP_STATE.score  = COMP_STATE.score + COMP_STATE.new_punkti(COMP_STATE.number*reiz)
-    COMP_STATE.bank = COMP_STATE.bank + COMP_STATE.new_banka(COMP_STATE.number*reiz)
+    COMP_STATE.score  = COMP_STATE.score + COMP_STATE.new_punkti(COMP_STATE.number)
+    COMP_STATE.bank = COMP_STATE.bank + COMP_STATE.new_banka(COMP_STATE.number)
 
 def reiz3_komanda():
     calculate_new_state(3)
