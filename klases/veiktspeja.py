@@ -14,6 +14,6 @@ class Veiktspeja:
     def run(self):
         self.uzs_laiks = time_ns()
 
-    def __repr__(self):
-        print(f"{self.generets} | {self.izskatits} | {self.laiks / 10e9 :.4f}")
+    def __str__(self):
+        return f"{self.generets} | {self.izskatits} | {self.laiks / 10e9 :.6f}"
     

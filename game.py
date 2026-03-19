@@ -33,16 +33,14 @@ def start_scene():
     choice_scene.pack_forget()
     COMP_STATE.number = number
     izvele_dat_spel = choice_speletajs_izvele.get()
+    ALGO = choice_algorithm.get()
     VEIKTS = Veiktspeja()
     if izvele_dat_spel == "dators":
         COMP_STATE = Node(number, 0, 0, True)
-        print(COMP_STATE.max)
+        datora_gajiens(0)
     else:
         COMP_STATE = Node(number, 0, 0, False)
-        print(COMP_STATE.max)
-    rez = Minimax(COMP_STATE, VEIKTS)
-    print(rez)
-    ALGO = choice_algorithm.get()
+    
     # print("Izvēlētais algoritms: "+algo)
     game_scene.pack()
     
@@ -54,15 +52,20 @@ def calculate_new_state(reiz):
     COMP_STATE.number = COMP_STATE.number*reiz
     COMP_STATE.score  = COMP_STATE.score + COMP_STATE.new_punkti(COMP_STATE.number)
     COMP_STATE.bank = COMP_STATE.bank + COMP_STATE.new_banka(COMP_STATE.number)
+    COMP_STATE.next = []
 
-def reiz3_komanda():
-    calculate_new_state(3)
+def datora_gajiens(num):
+    if num != 0:
+        calculate_new_state(num)
     if ALGO == "minimax":
         cels = Minimax(COMP_STATE, VEIKTS)
     else:
         cels = AlfaBeta(COMP_STATE, VEIKTS)
-    print(cels)
     calculate_new_state(cels[0])
+    print(VEIKTS)
+
+def reiz3_komanda():
+    datora_gajiens(3)
     num_label.config(text="Skaitlis: " + str(COMP_STATE.number))
     pnts_label.config(text="Kopējie punkti: " + str(COMP_STATE.score))
     bank_pnts.config(text="Banka: " + str(COMP_STATE.bank))
@@ -71,27 +74,13 @@ def reiz3_komanda():
 
 
 def reiz4_komanda():
-    calculate_new_state(4)
-    if ALGO == "minimax":
-        cels = Minimax(COMP_STATE, VEIKTS)
-    else:
-        cels = AlfaBeta(COMP_STATE, VEIKTS)
-    print(cels)
-    calculate_new_state(cels[0])
+    datora_gajiens(4)
     num_label.config(text="Skaitlis: " + str(COMP_STATE.number))
     pnts_label.config(text="Kopējie punkti: " + str(COMP_STATE.score))
     bank_pnts.config(text="Banka: " + str(COMP_STATE.bank))
-    # TODO update labels
-    # TODO make the path choice
 
 def reiz5_komanda():
-    calculate_new_state(5)
-    if ALGO == "minimax":
-        cels = Minimax(COMP_STATE, VEIKTS)
-    else:
-        cels = AlfaBeta(COMP_STATE, VEIKTS)
-    print(cels)
-    calculate_new_state(cels[0])
+    datora_gajiens(5)
     num_label.config(text="Skaitlis: " + str(COMP_STATE.number))
     pnts_label.config(text="Kopējie punkti: " + str(COMP_STATE.score))
     bank_pnts.config(text="Banka: " + str(COMP_STATE.bank))

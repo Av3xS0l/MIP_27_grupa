@@ -54,7 +54,7 @@ def AlfaBeta(sakums: Node, rez: Veiktspeja):
     for i in range(MAX_DZILUMS):
         for n in next_node.next:
             if n.heur == next_node.heur:
-                cels.append(next_node.number // n.number)
+                cels.append((next_node.number // n.number)+3)
                 next_node = n
                 break
     rez.stop()
