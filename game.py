@@ -62,8 +62,8 @@ def reiz3_komanda():
     else:
         cels = AlfaBeta(COMP_STATE, VEIKTS)
     print(cels)
-    current_num= COMP_STATE.number*3
-    num_label.config(text="Skaitlis: " + str(current_num))
+    calculate_new_state(cels[0])
+    num_label.config(text="Skaitlis: " + str(COMP_STATE.number))
     pnts_label.config(text="Kopējie punkti: " + str(COMP_STATE.score))
     bank_pnts.config(text="Banka: " + str(COMP_STATE.bank))
     # TODO update labels
@@ -77,8 +77,8 @@ def reiz4_komanda():
     else:
         cels = AlfaBeta(COMP_STATE, VEIKTS)
     print(cels)
-    current_num = COMP_STATE.number*4
-    num_label.config(text="Skaitlis: " + str(current_num))
+    calculate_new_state(cels[0])
+    num_label.config(text="Skaitlis: " + str(COMP_STATE.number))
     pnts_label.config(text="Kopējie punkti: " + str(COMP_STATE.score))
     bank_pnts.config(text="Banka: " + str(COMP_STATE.bank))
     # TODO update labels
@@ -91,8 +91,8 @@ def reiz5_komanda():
     else:
         cels = AlfaBeta(COMP_STATE, VEIKTS)
     print(cels)
-    current_num= COMP_STATE.number*5
-    num_label.config(text="Skaitlis: " + str(current_num))
+    calculate_new_state(cels[0])
+    num_label.config(text="Skaitlis: " + str(COMP_STATE.number))
     pnts_label.config(text="Kopējie punkti: " + str(COMP_STATE.score))
     bank_pnts.config(text="Banka: " + str(COMP_STATE.bank))
     # TODO update labels
