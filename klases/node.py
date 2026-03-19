@@ -6,6 +6,7 @@ class Node:
     self.max=m
     self.heur=0
     self.next=[]
+    self.ab = 0
   def append(self, node1):
     self.next.append(node1)
 

@@ -1,6 +1,6 @@
 import tkinter as tk
 from klases import Node
-from klases import Minimax
+from klases import Minimax, AlfaBeta
 
 root = tk.Tk()
 root.title("Spēlīte")
@@ -26,7 +26,7 @@ def start_scene():
         return
     choice_scene.pack_forget()
     COMP_STATE.number = number
-    rez = Minimax(COMP_STATE)
+    rez = AlfaBeta(COMP_STATE)
     print(rez)
     # algo = choice_algorithm.get()
     # print("Izvēlētais algoritms: "+algo)
