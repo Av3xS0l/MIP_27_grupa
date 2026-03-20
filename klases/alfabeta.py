@@ -4,13 +4,13 @@ from .veiktspeja import Veiktspeja
 def _alfabeta(sakums: Node, ieprieks: Node | None, dzilums, rez: Veiktspeja):
     MAX_DZILUMS = 3
 
-    if dzilums == MAX_DZILUMS:
+    if dzilums == MAX_DZILUMS or sakums.number >= 3000:
         sakums.heiristika()
         rez.izskatits += 1
         return
 
     for i in range(3, 6):
-        sakums.next.append(Node(sakums.number*i, sakums.score + sakums.new_punkti(sakums.number*i),sakums.bank + sakums.new_banka(sakums.number*i), not sakums.max))
+        sakums.next.append(Node(sakums.number*i, sakums.score + sakums.new_punkti(sakums.number*i),sakums.bank + sakums.new_banka(sakums.number*i), not sakums.max, sakums.uzsaka))
         rez.generets += 1
         _alfabeta(sakums.next[-1], sakums, dzilums+1, rez)
 
@@ -47,14 +47,14 @@ def _alfabeta(sakums: Node, ieprieks: Node | None, dzilums, rez: Veiktspeja):
 def AlfaBeta(sakums: Node, rez: Veiktspeja):
     rez.run()
     MAX_DZILUMS = 3
-    _alfabeta(sakums, None, 0, Veiktspeja)
+    _alfabeta(sakums, None, 0, rez)
     next_node = sakums
     cels = []
 
     for i in range(MAX_DZILUMS):
         for n in next_node.next:
             if n.heur == next_node.heur:
-                cels.append((next_node.number // n.number)+3)
+                cels.append(n.number // next_node.number)
                 next_node = n
                 break
     rez.stop()

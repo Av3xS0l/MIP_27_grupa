@@ -15,5 +15,5 @@ class Veiktspeja:
         self.uzs_laiks = time_ns()
 
     def __str__(self):
-        return f"{self.generets} | {self.izskatits} | {self.laiks / 10e9 :.6f}"
+        return f"{self.generets} | {self.izskatits} | {self.laiks / 10e6 :.6f}ms"
     

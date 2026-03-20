@@ -1,5 +1,5 @@
 class Node:
-  def __init__(self,n,s,b,m):
+  def __init__(self,n,s,b,m,u):
     self.number=n
     self.score=s
     self.bank=b
@@ -7,18 +7,31 @@ class Node:
     self.heur=0
     self.next=[]
     self.ab = 0
+    self.uzsaka = u
   def append(self, node1):
     self.next.append(node1)
 
   def heiristika(self):
-    if self.score % 2 != self.bank % 2:
-      self.heur += 1
-      if self.number % 5 == 0:
-        self.heur += 10
+    if self.uzsaka:
+      if self.score % 2 == self.bank % 2:
+        self.heur += 1
+        if self.number % 5 == 0:
+          self.heur += 10
+      else:
+        self.heur -= 1
+        if self.number % 5 == 0:
+          self.heur -= 10
+        
     else:
-      self.heur -= 1
-      if self.number % 5 == 0:
-        self.heur -= 10
+      if self.score % 2 != self.bank % 2:
+        self.heur -= 1
+        if self.number % 5 == 0:
+          self.heur -= 10
+      else:
+        self.heur += 1
+        if self.number % 5 == 0:
+          self.heur += 10
+        
   
   def new_banka(self, nm):
       return 1 if nm % 5 == 0 else 0
